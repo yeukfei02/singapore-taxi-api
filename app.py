@@ -8,11 +8,11 @@ import logging as logger
 from dotenv import load_dotenv
 load_dotenv()
 
-from api.taxiAvailability import get_taxi_availability_request
-from api.taxiStands import get_taxi_stands_request
+from chalicelib.api.taxiAvailability import get_taxi_availability_request
+from chalicelib.api.taxiStands import get_taxi_stands_request
 
-from model.User import UserModel
-from model.FavouritesTaxiStand import FavouritesTaxiStandModel
+from chalicelib.model.User import UserModel
+from chalicelib.model.FavouritesTaxiStand import FavouritesTaxiStandModel
 
 app = Chalice(app_name='singapore-taxi-api')
 
