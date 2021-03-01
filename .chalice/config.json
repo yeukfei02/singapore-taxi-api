@@ -1,12 +1,22 @@
 {
   "version": "2.0",
   "app_name": "singapore-taxi-api",
+  "environment_variables": {
+    "MY_AWS_ACCESS_KEY": "yourValue",
+    "MY_AWS_SECRET_ACCESS_KEY": "yourValue",
+    "JWT_SECRET": "yourValue",
+    "ACCOUNT_KEY": "yourValue"
+  },
   "stages": {
     "dev": {
-      "api_gateway_stage": "dev"
+      "api_gateway_stage": "dev",
+      "autogen_policy": false,
+      "iam_policy_file": "policy-dev.json"
     },
     "prod": {
-      "api_gateway_stage": "prod"
+      "api_gateway_stage": "prod",
+      "autogen_policy": false,
+      "iam_policy_file": "policy-prod.json"
     }
   },
   "lambda_memory_size": 1024,

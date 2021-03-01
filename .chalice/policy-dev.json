@@ -1,0 +1,29 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1614581736533",
+      "Action": "dynamodb:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Stmt1614582513938",
+      "Action": "logs:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Stmt1614582571169",
+      "Action": "cloudwatch:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Stmt1614582600392",
+      "Action": "xray:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}

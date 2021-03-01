@@ -2,9 +2,9 @@
 
 singapore-taxi-api
 
-documentation:
+documentation: https://documenter.getpostman.com/view/3827865/TWDdjDup
 
-api url:
+api url: https://w54aufs0fa.execute-api.ap-southeast-1.amazonaws.com/prod
 
 ## Requirement:
 
