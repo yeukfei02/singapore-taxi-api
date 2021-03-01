@@ -18,7 +18,13 @@ api url:
 $ chalice local
 
 // deploy serverless api to aws
-$ chalice deploy
+$ chalice deploy --stage <stage>
+
+// development
+$ chalice deploy --stage dev
+
+// production
+$ chalice deploy --stage prod
 
 // remove serverless services in aws (api gateway, lambda, s3, cloudformation)
 $ chalice delete
