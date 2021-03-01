@@ -8,5 +8,7 @@
     "prod": {
       "api_gateway_stage": "prod"
     }
-  }
+  },
+  "lambda_memory_size": "1024",
+  "xray": true
 }
