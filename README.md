@@ -26,7 +26,7 @@ $ chalice deploy --stage dev
 // production
 $ chalice deploy --stage prod
 
-// remove serverless services in aws (api gateway, lambda, s3, cloudformation)
+// remove serverless services in aws (api gateway, lambda, iam-role)
 $ chalice delete
 
 // use help to see what command can use
