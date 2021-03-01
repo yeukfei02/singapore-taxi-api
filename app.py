@@ -16,7 +16,7 @@ from chalicelib.model.FavouritesTaxiStand import FavouritesTaxiStandModel
 
 app = Chalice(app_name='singapore-taxi-api')
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'], cors=True)
 def main():
     body = {
         'message': 'singapore-taxi-api'
@@ -24,7 +24,7 @@ def main():
     return Response(body=body, status_code=200)
 
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['POST'], cors=True)
 def signup():
     response = {}
 
@@ -54,7 +54,7 @@ def signup():
     return response
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST'], cors=True)
 def login():
     response = {}
 
@@ -122,7 +122,7 @@ def authorizer(auth_request):
     return response
 
 
-@app.route('/add-favourites-taxi-stands', methods=['POST'], authorizer=authorizer)
+@app.route('/add-favourites-taxi-stands', methods=['POST'], authorizer=authorizer, cors=True)
 def add_favourites_taxi_stands():
     response = {}
 
@@ -161,7 +161,7 @@ def add_favourites_taxi_stands():
     return response
 
 
-@app.route('/get-favourites-taxi-stands/{userId}', methods=['GET'], authorizer=authorizer)
+@app.route('/get-favourites-taxi-stands/{userId}', methods=['GET'], authorizer=authorizer, cors=True)
 def get_favourites_taxi_stands_by_user_id(userId):
     response = {}
 
@@ -202,7 +202,7 @@ def get_favourites_taxi_stands_by_user_id(userId):
     return response
 
 
-@app.route('/delete-favourites-taxi-stands/{id}', methods=['DELETE'], authorizer=authorizer)
+@app.route('/delete-favourites-taxi-stands/{id}', methods=['DELETE'], authorizer=authorizer, cors=True)
 def delete_favourites_taxi_stands_by_user_id(id):
     response = {}
 
@@ -233,7 +233,7 @@ def delete_favourites_taxi_stands_by_user_id(id):
     return response
 
 
-@app.route('/get-taxi-availability', methods=['GET'])
+@app.route('/get-taxi-availability', methods=['GET'], cors=True)
 def get_taxi_availability():
     response = {}
 
@@ -264,7 +264,7 @@ def get_taxi_availability():
     return response
 
 
-@app.route('/get-taxi-stands', methods=['GET'])
+@app.route('/get-taxi-stands', methods=['GET'], cors=True)
 def get_taxi_stands():
     response = {}
 
