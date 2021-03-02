@@ -20,11 +20,14 @@ $ chalice local
 // deploy serverless api to aws
 $ chalice deploy --stage <stage>
 
-// development
+// deploy development
 $ chalice deploy --stage dev
 
-// production
+// deploy production
 $ chalice deploy --stage prod
+
+// create deploy zip, inside .chalice/deployment folder
+$ chalice package --single-file OUT
 
 // remove serverless services in aws (api gateway, lambda, iam-role)
 $ chalice delete

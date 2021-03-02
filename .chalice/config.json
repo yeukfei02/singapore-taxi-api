@@ -2,10 +2,10 @@
   "version": "2.0",
   "app_name": "singapore-taxi-api",
   "environment_variables": {
-    "MY_AWS_ACCESS_KEY": "yourValue",
-    "MY_AWS_SECRET_ACCESS_KEY": "yourValue",
-    "JWT_SECRET": "yourValue",
-    "ACCOUNT_KEY": "yourValue"
+    "MY_AWS_ACCESS_KEY": "<yourValue>",
+    "MY_AWS_SECRET_ACCESS_KEY": "<yourValue>",
+    "JWT_SECRET": "<yourValue>",
+    "ACCOUNT_KEY": "<yourValue>"
   },
   "stages": {
     "dev": {
