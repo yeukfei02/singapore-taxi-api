@@ -2,6 +2,7 @@ from pynamodb.attributes import UnicodeAttribute, NumberAttribute, UTCDateTimeAt
 from pynamodb.models import Model
 from datetime import datetime
 
+
 class FavouritesTaxiStandModel(Model):
     class Meta:
         table_name = "SingaporeTaxiApiFavouritesTaxiStand"
@@ -27,5 +28,7 @@ class FavouritesTaxiStandModel(Model):
         for name, attr in self._get_attributes().items():
             yield name, attr.serialize(getattr(self, name))
 
+
 if not FavouritesTaxiStandModel.exists():
-    FavouritesTaxiStandModel.create_table(read_capacity_units=1, write_capacity_units=1)
+    FavouritesTaxiStandModel.create_table(
+        read_capacity_units=1, write_capacity_units=1)

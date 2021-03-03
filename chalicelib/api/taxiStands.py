@@ -4,6 +4,7 @@ import logging as logger
 
 ROOT_URL = 'http://datamall2.mytransport.sg/ltaodataservice'
 
+
 def get_taxi_stands_request():
     result = None
 
@@ -19,5 +20,5 @@ def get_taxi_stands_request():
 
     if response.status_code == 200:
         result = response.json()
-    
+
     return result

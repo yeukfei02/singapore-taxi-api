@@ -1,3 +1,7 @@
+from chalicelib.model.FavouritesTaxiStand import FavouritesTaxiStandModel
+from chalicelib.model.User import UserModel
+from chalicelib.api.taxiStands import get_taxi_stands_request
+from chalicelib.api.taxiAvailability import get_taxi_availability_request
 from chalice import Chalice, AuthResponse, Response
 import uuid
 import bcrypt
@@ -8,13 +12,9 @@ import logging as logger
 from dotenv import load_dotenv
 load_dotenv()
 
-from chalicelib.api.taxiAvailability import get_taxi_availability_request
-from chalicelib.api.taxiStands import get_taxi_stands_request
-
-from chalicelib.model.User import UserModel
-from chalicelib.model.FavouritesTaxiStand import FavouritesTaxiStandModel
 
 app = Chalice(app_name='singapore-taxi-api')
+
 
 @app.route('/', methods=['GET'], cors=True)
 def main():
@@ -42,15 +42,16 @@ def signup():
             salt = bcrypt.gensalt()
             hashedPassword = bcrypt.hashpw(password.encode('utf-8'), salt)
             hashedPasswordDecoded = hashedPassword.decode('utf-8')
-            
-            userModel = UserModel(id=uuidStr, email=email, password=hashedPasswordDecoded)
+
+            userModel = UserModel(id=uuidStr, email=email,
+                                  password=hashedPasswordDecoded)
             userModel.save()
 
             body = {
                 'message': 'signup'
             }
             response = Response(body=body, status_code=200)
-    
+
     return response
 
 
@@ -71,14 +72,15 @@ def login():
                 print('userFromDB = ', userFromDB)
                 if userFromDB:
                     userHashedPasswordFromDB = userFromDB.password
-                    isPasswordValid = bcrypt.checkpw(password.encode('utf-8'), userHashedPasswordFromDB.encode('utf-8'))
+                    isPasswordValid = bcrypt.checkpw(password.encode(
+                        'utf-8'), userHashedPasswordFromDB.encode('utf-8'))
                     if isPasswordValid:
                         token = jwt.encode(
                             {
-                                "id": str(uuid.uuid4()), 
+                                "id": str(uuid.uuid4()),
                                 "email": email
-                            }, 
-                            os.getenv('JWT_SECRET'), 
+                            },
+                            os.getenv('JWT_SECRET'),
                             algorithm="HS256"
                         )
 
@@ -108,12 +110,13 @@ def authorizer(auth_request):
     auth_success = False
     if token:
         token = token.replace('Bearer ', '')
-        decoded = jwt.decode(token, os.getenv('JWT_SECRET'), algorithms=["HS256"])
+        decoded = jwt.decode(token, os.getenv(
+            'JWT_SECRET'), algorithms=["HS256"])
         logger.info('decoded = {0}'.format(decoded))
         if decoded:
             principal_id = decoded['id']
             auth_success = True
-    
+
     if auth_success:
         response = AuthResponse(routes=['*'], principal_id=principal_id)
     else:
@@ -141,9 +144,9 @@ def add_favourites_taxi_stands():
         uuidStr = str(uuid.uuid4())
 
         favouritesTaxiStandModel = FavouritesTaxiStandModel(
-            id=uuidStr, 
-            userId=userId, 
-            taxiCode=taxiCode, 
+            id=uuidStr,
+            userId=userId,
+            taxiCode=taxiCode,
             latitude=latitude,
             longitude=longitude,
             bfa=bfa,
@@ -169,8 +172,9 @@ def get_favourites_taxi_stands_by_user_id(userId):
 
     if userId:
         favourites_taxi_stand_list = []
-        for favouritesTaxiStandFromDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.userId==userId):
-            logger.info('favouritesTaxiStandFromDB = {0}'.format(favouritesTaxiStandFromDB))
+        for favouritesTaxiStandFromDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.userId == userId):
+            logger.info('favouritesTaxiStandFromDB = {0}'.format(
+                favouritesTaxiStandFromDB))
 
             if favouritesTaxiStandFromDB:
                 obj = {
@@ -209,12 +213,13 @@ def delete_favourites_taxi_stands_by_user_id(id):
     logger.info('id = {0}'.format(id))
 
     if id:
-        for favouritesTaxiStandFormDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.id==id):
-            logger.info('favouritesTaxiStandFormDB = {0}'.format(favouritesTaxiStandFormDB))
+        for favouritesTaxiStandFormDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.id == id):
+            logger.info('favouritesTaxiStandFormDB = {0}'.format(
+                favouritesTaxiStandFormDB))
 
             if favouritesTaxiStandFormDB:
                 favouritesTaxiStandFormDB.delete()
-            
+
                 body = {
                     'message': 'deleteFavouritesTaxiStands',
                 }
@@ -238,7 +243,8 @@ def get_taxi_availability():
     response = {}
 
     get_taxi_availability_result = get_taxi_availability_request()
-    logger.info('get_taxi_availability_result = {0}'.format(get_taxi_availability_result))
+    logger.info('get_taxi_availability_result = {0}'.format(
+        get_taxi_availability_result))
 
     taxi_availability_list = []
     if get_taxi_availability_result:
@@ -269,7 +275,8 @@ def get_taxi_stands():
     response = {}
 
     get_taxi_availability_result = get_taxi_stands_request()
-    logger.info('get_taxi_availability_result = {0}'.format(get_taxi_availability_result))
+    logger.info('get_taxi_availability_result = {0}'.format(
+        get_taxi_availability_result))
 
     taxi_stands_list = []
     if get_taxi_availability_result:
@@ -295,7 +302,7 @@ def get_taxi_stands():
                 }
                 taxi_stands_list.append(obj)
 
-    if taxi_stands_list:    
+    if taxi_stands_list:
         body = {
             'message': 'get-taxi-stands',
             'taxiStands': taxi_stands_list
@@ -303,4 +310,3 @@ def get_taxi_stands():
         response = Response(body=body, status_code=200)
 
     return response
-
