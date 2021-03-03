@@ -2,6 +2,7 @@ from pynamodb.attributes import UnicodeAttribute, UTCDateTimeAttribute
 from pynamodb.models import Model
 from datetime import datetime
 
+
 class UserModel(Model):
     class Meta:
         table_name = "SingaporeTaxiApiUser"
@@ -20,6 +21,7 @@ class UserModel(Model):
     def __iter__(self):
         for name, attr in self._get_attributes().items():
             yield name, attr.serialize(getattr(self, name))
+
 
 if not UserModel.exists():
     UserModel.create_table(read_capacity_units=1, write_capacity_units=1)
