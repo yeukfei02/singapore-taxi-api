@@ -26,7 +26,7 @@ $ chalice deploy --stage dev
 // deploy production
 $ chalice deploy --stage prod
 
-// create deploy zip, inside .chalice/deployment folder
+// create deploy zip, inside .chalice/deployments folder
 $ chalice package --single-file OUT
 
 // remove serverless services in aws (api gateway, lambda, iam-role)
