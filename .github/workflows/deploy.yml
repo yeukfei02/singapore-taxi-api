@@ -1,0 +1,22 @@
+name: Deploy master branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: chalice deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: jayef0/chalice-extended-action@v0.1.0
+        env:
+          REQUIREMENTS_FILE: requirements.txt
+          OPERATION: deploy
+          STAGE: prod
+          AWS_ACCESS_KEY_ID: ${{ secrets.MY_AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.MY_AWS_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-southeast-1
