@@ -29,7 +29,5 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: pip3 install -r requirements.txt
       - run: pip3 install chalice
-      
-      - name: chalice deploy
       - run: chalice deploy --stage prod
       
