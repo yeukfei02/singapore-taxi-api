@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: jayef0/chalice-extended-action@v0.1.0
+      - uses: jayef0/chalice-extended-action@v0.2.0
         env:
           REQUIREMENTS_FILE: requirements.txt
           OPERATION: deploy
