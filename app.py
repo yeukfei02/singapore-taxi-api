@@ -69,7 +69,7 @@ def login():
             logger.info('password = %s', password)
 
             for userFromDB in UserModel.scan(UserModel.email == email):
-                print('userFromDB = ', userFromDB)
+                logger.info('userFromDB = {0}', userFromDB)
                 if userFromDB:
                     userHashedPasswordFromDB = userFromDB.password
                     isPasswordValid = bcrypt.checkpw(password.encode(
