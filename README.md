@@ -2,18 +2,18 @@
 
 singapore-taxi-api
 
-documentation: https://documenter.getpostman.com/view/3827865/TWDdjDup
+documentation: <https://documenter.getpostman.com/view/3827865/TWDdjDup>
 
-api url: https://iel7vdh4r9.execute-api.ap-southeast-1.amazonaws.com/prod
+api url: <https://iel7vdh4r9.execute-api.ap-southeast-1.amazonaws.com/prod>
 
-## Requirement:
+## Requirement
 
 - install python (3.8)
 - install chalice
 
-## Testing and run:
+## Testing and run
 
-```
+```zsh
 // test api in local
 $ chalice local
 
