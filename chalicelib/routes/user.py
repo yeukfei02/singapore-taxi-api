@@ -1,7 +1,6 @@
 from chalice import Blueprint, Response
 import uuid
 import bcrypt
-import logging as logger
 import jwt
 import os
 from chalicelib.model.User import UserModel
@@ -19,8 +18,8 @@ def signup():
         password = request_body['password']
 
         if email and password:
-            logger.info('email = {0}', email)
-            logger.info('password = {0}', password)
+            print('email = {0}', email)
+            print('password = {0}', password)
 
             uuidStr = str(uuid.uuid4())
 
@@ -50,11 +49,11 @@ def login():
         password = request_body['password']
 
         if email and password:
-            logger.info('email = {0}', email)
-            logger.info('password = {0}', password)
+            print('email = {0}', email)
+            print('password = {0}', password)
 
             for userFromDB in UserModel.scan(UserModel.email == email):
-                logger.info('userFromDB = {0}', userFromDB)
+                print('userFromDB = {0}', userFromDB)
                 if userFromDB:
                     userHashedPasswordFromDB = userFromDB.password
                     isPasswordValid = bcrypt.checkpw(password.encode(

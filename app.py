@@ -6,7 +6,6 @@ from chalicelib.model.FavouritesTaxiStand import FavouritesTaxiStandModel
 import jwt
 import os
 import uuid
-import logging as logger
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -23,7 +22,7 @@ def authorizer(auth_request):
     response = {}
 
     token = auth_request.token
-    logger.info('token = {0}'.format(token))
+    print('token = {0}'.format(token))
 
     principal_id = 'user'
     auth_success = False
@@ -31,7 +30,7 @@ def authorizer(auth_request):
         token = token.replace('Bearer ', '')
         decoded = jwt.decode(token, os.getenv(
             'JWT_SECRET'), algorithms=["HS256"])
-        logger.info('decoded = {0}'.format(decoded))
+        print('decoded = {0}'.format(decoded))
         if decoded:
             principal_id = decoded['id']
             auth_success = True
@@ -87,12 +86,12 @@ def add_favourites_taxi_stands():
 def get_favourites_taxi_stands_by_user_id(userId):
     response = {}
 
-    logger.info('userId = {0}'.format(userId))
+    print('userId = {0}'.format(userId))
 
     if userId:
         favourites_taxi_stand_list = []
         for favouritesTaxiStandFromDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.userId == userId):
-            logger.info('favouritesTaxiStandFromDB = {0}'.format(
+            print('favouritesTaxiStandFromDB = {0}'.format(
                 favouritesTaxiStandFromDB))
 
             if favouritesTaxiStandFromDB:
@@ -129,11 +128,11 @@ def get_favourites_taxi_stands_by_user_id(userId):
 def delete_favourites_taxi_stands_by_user_id(id):
     response = {}
 
-    logger.info('id = {0}'.format(id))
+    print('id = {0}'.format(id))
 
     if id:
         for favouritesTaxiStandFormDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.id == id):
-            logger.info('favouritesTaxiStandFormDB = {0}'.format(
+            print('favouritesTaxiStandFormDB = {0}'.format(
                 favouritesTaxiStandFormDB))
 
             if favouritesTaxiStandFormDB:
