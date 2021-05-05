@@ -1,7 +1,6 @@
 from chalice import Blueprint, Response
 from chalicelib.api.taxiStands import get_taxi_stands_request
 from chalicelib.api.taxiAvailability import get_taxi_availability_request
-import logging as logger
 
 taxi_routes = Blueprint(__name__)
 
@@ -11,7 +10,7 @@ def get_taxi_availability():
     response = {}
 
     get_taxi_availability_result = get_taxi_availability_request()
-    logger.info('get_taxi_availability_result = {0}'.format(
+    print('get_taxi_availability_result = {0}'.format(
         get_taxi_availability_result))
 
     taxi_availability_list = []
@@ -42,7 +41,7 @@ def get_taxi_stands():
     response = {}
 
     get_taxi_availability_result = get_taxi_stands_request()
-    logger.info('get_taxi_availability_result = {0}'.format(
+    print('get_taxi_availability_result = {0}'.format(
         get_taxi_availability_result))
 
     taxi_stands_list = []
