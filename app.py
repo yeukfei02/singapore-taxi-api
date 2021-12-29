@@ -22,7 +22,7 @@ def authorizer(auth_request):
     response = {}
 
     token = auth_request.token
-    print('token = {0}'.format(token))
+    print('token = ', token)
 
     principal_id = 'user'
     auth_success = False
@@ -30,7 +30,7 @@ def authorizer(auth_request):
         token = token.replace('Bearer ', '')
         decoded = jwt.decode(token, os.getenv(
             'JWT_SECRET'), algorithms=["HS256"])
-        print('decoded = {0}'.format(decoded))
+        print('decoded = ', decoded)
         if decoded:
             principal_id = decoded['id']
             auth_success = True
@@ -86,13 +86,12 @@ def add_favourites_taxi_stands():
 def get_favourites_taxi_stands_by_user_id(userId):
     response = {}
 
-    print('userId = {0}'.format(userId))
+    print('userId = ', userId)
 
     if userId:
         favourites_taxi_stand_list = []
         for favouritesTaxiStandFromDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.userId == userId):
-            print('favouritesTaxiStandFromDB = {0}'.format(
-                favouritesTaxiStandFromDB))
+            print('favouritesTaxiStandFromDB = ', favouritesTaxiStandFromDB)
 
             if favouritesTaxiStandFromDB:
                 obj = {
@@ -128,12 +127,11 @@ def get_favourites_taxi_stands_by_user_id(userId):
 def delete_favourites_taxi_stands_by_user_id(id):
     response = {}
 
-    print('id = {0}'.format(id))
+    print('id = ', id)
 
     if id:
         for favouritesTaxiStandFormDB in FavouritesTaxiStandModel.scan(FavouritesTaxiStandModel.id == id):
-            print('favouritesTaxiStandFormDB = {0}'.format(
-                favouritesTaxiStandFormDB))
+            print('favouritesTaxiStandFormDB = ', favouritesTaxiStandFormDB)
 
             if favouritesTaxiStandFormDB:
                 favouritesTaxiStandFormDB.delete()
