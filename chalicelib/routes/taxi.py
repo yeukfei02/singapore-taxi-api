@@ -10,8 +10,7 @@ def get_taxi_availability():
     response = {}
 
     get_taxi_availability_result = get_taxi_availability_request()
-    print('get_taxi_availability_result = {0}'.format(
-        get_taxi_availability_result))
+    print('get_taxi_availability_result = ', get_taxi_availability_result)
 
     taxi_availability_list = []
     if get_taxi_availability_result:
@@ -41,8 +40,7 @@ def get_taxi_stands():
     response = {}
 
     get_taxi_availability_result = get_taxi_stands_request()
-    print('get_taxi_availability_result = {0}'.format(
-        get_taxi_availability_result))
+    print('get_taxi_availability_result = ', get_taxi_availability_result)
 
     taxi_stands_list = []
     if get_taxi_availability_result:
